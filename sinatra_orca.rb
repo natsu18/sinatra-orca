@@ -1,4 +1,4 @@
-re 'pp'
+require 'pp'
 require 'uri'
 require 'net/http'
 require 'crack'
@@ -23,4 +23,3 @@ get '/' do
   @patiens=list_patiens(HOST,PORT,USER,PASSWD)
   haml :index
 end
-
