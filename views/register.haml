@@ -1,0 +1,37 @@
+- @patient ||={}
+- @patient['whole_name'] ||="性　名"
+- @patient['whole_name_kana'] ||="セイ　メイ"
+- @patient['birth_date'] ||="2010-01-01"
+- @patient['sex'] ||="1"
+
+%html
+  %head
+  %body
+    %h2 患者登録
+    %div
+      %a{:href=>"/"} 戻る
+    %div
+      - if @error
+        %p=@error
+    %div
+      %form{:action=>"/register",:method=>"post"}
+        %div
+          %p 氏名
+          %input{:type=>"text",:name=>"whole_name" ,:value=>"#{@patient['whole_name']}"}
+        %div
+          %p カナ氏名
+          %input{:type=>"text",:name=>"whole_name_kana", :value=>"#{@patient['whole_name_kana']}"}
+        %div
+          %p 生年月日
+          %input{:type=>"text",:name=>"birth_date", :value=>"#{@patient['birth_date']}"}
+        %div
+          %p 性別
+          %select{:name=>"sex"}
+            - if @patient['sex']=="1"
+              %option{:value=>"1",:selected=>"true"}男
+              %option{:value=>"2"}女
+            - else
+              %option{:value=>"1"}男
+              %option{:value=>"2",:selected=>"true"}女
+        %div
+          %input{:type=>"submit"}
