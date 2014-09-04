@@ -1,0 +1,13 @@
+%html
+  %head
+  %body
+    %h2 患者登録結果
+    %div
+      %a{:href=>"/"}戻る
+    %div
+      %p="患者ID:#{@id}"
+      %p="氏名:#{@patient['whole_name']}"
+      %p="カナ氏名:#{@patient['whole_name_kana']}"
+      %p="生年月日:#{@patient['birth_date']}"
+      %p="性別:#{@patient['sex']=="1"?"男":"女"}"
+      

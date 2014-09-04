@@ -1,0 +1,37 @@
+
+%html
+  %head
+  %body
+    %h2 患者削除確認
+    %div
+      %a{:href=>"/"}戻る
+    %div
+      %p="患者ID:#{@patient['id']}"
+      %p="氏名:#{@patient['whole_name']}"
+      %p="カナ氏名:#{@patient['whole_name_kana']}"
+      %p="生年月日:#{@patient['birth_date']}"
+      %p="性別:#{@patient['sex']=="1"?"男":"女"}"
+    %div
+      %form{:action   =>'/delete', |
+            :method   =>'post'}
+        %input{:type  =>"text", |
+               :name  =>'id', |
+               :value =>"#{@patient['id']}", |
+               :hidden=>"true"}
+        %input{:type  =>"text", |
+               :name  =>'whole_name', |
+               :value =>"#{@patient['whole_name']}", |
+               :hidden=>"true"}
+        %input{:type  =>"text", |
+               :name  =>'whole_name_kana', |
+               :value =>"#{@patient['whole_name_kana']}", |
+               :hidden=>"true"}
+        %input{:type  =>"text", |
+               :name  =>'birth_date', |
+               :value =>"#{@patient['birth_date']}", |
+               :hidden=>"true"}
+        %input{:type  =>"text", |
+               :name  =>'sex', |
+               :value =>"#{@patient['sex']}", |
+               :hidden=>"true"}
+        %input{:type=>"submit", :value=>"削除する"}
