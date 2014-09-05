@@ -1,9 +1,13 @@
 %html
   %head
+    %meta{:charset => "UTF-8"}
+    %link{:rel  => "stylesheet", |
+          :type => "text/css", |
+          :href => "style.css"}
   %body
     %h2 ログイン
-    %div
-      - if session['message']
+    - if session['message']
+      %div{:class => "message"}
         %p= session['message']
         - session['message'] = nil
     %div

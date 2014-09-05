@@ -79,15 +79,30 @@ end
 get '/delete' do
   check_login
   pp params
-  @patient=params
-  haml:delete
+  @patient = params
+  haml :delete
 end
 
 post '/delete' do
   check_login
-  @params=params
-  @id,@error=delete_patient(opt,@params)
-  session['message']=@error
+  @params = params
+  @id,@error = delete_patient(opt,@params)
+  session['message'] = @error
   redirect to '/'
+end
+
+get '/modify' do
+  check_login
+  pp params
+  @patient = params
+  haml :modify
+end
+
+post '/modify' do
+  check_login
+  @params = params
+  @id,@error = modify_patient(opt,@params)
+  session['message'] = @error
+  redirect to "/"
 end
 

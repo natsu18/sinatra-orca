@@ -1,44 +1,46 @@
 %html
   %head
+    %meta{:charset => "UTF-8"}
+    %link{:rel  => "stylesheet", |
+          :type => "text/css", |
+          :href => "style.css"}
   %body
     %h2 日レセ患者API
-    %div
-      - if session['message']
+    - if session['message']
+      %div{:class => "message"}
         %p=session['message']
         - session['message']=nil
-    %div
+    %div{:class => "top_menu"}
       %a{:href=>"/register"}新規登録
       %a{:href=>"/logout"}ログアウト
     %div
-      %table
+      %table{:class => "table1"}
         %tr
-          %th 患者番号
-          %th 氏名
-          %th カナ氏名
-          %th 生年月日
-          %th 性別
-          %th 作成日
-          %th 更新日
-          %th
-          %th
-        - @patients.each do |patient|
+          %th{:class => "th1"}  患者番号
+          %th{:class => "th1"}  氏名
+          %th{:class => "th1"}  カナ氏名
+          %th{:class => "th1"}  生年月日
+          %th{:class => "th1"}  性別
+          %th{:class => "th1"}  作成日
+          %th{:class => "th1"}  更新日
+          %th{:class => "th1"} 
+          %th{:class => "th1"}
+        - @patients.each_with_index do |patient,i|
           %tr
             - param="id=#{patient['Patient_ID']}"
             - param<<"&whole_name=#{patient['WholeName']}"
             - param<<"&whole_name_kana=#{patient['WholeName_inKana']}"
             - param<<"&birth_date=#{patient['BirthDate']}"
             - param<<"&sex=#{patient['Sex']}"
-
-            %td=patient['Patient_ID']
-            %td=patient['WholeName']
-            %td=patient['WholeName_inKana']
-            %td=patient['BirthDate']
-            %td=patient['Sex']=="1"?"男":"女"
-            %td=patient['CreateDate']
-            %td=patient['UpdateDate']
-            %td
+            - td_class = "td#{i%2}"
+            %td{:class => "#{td_class}"}= patient['Patient_ID']
+            %td{:class => "#{td_class}"}= patient['WholeName']
+            %td{:class => "#{td_class}"}= patient['WholeName_inKana']
+            %td{:class => "#{td_class}"}= patient['BirthDate']
+            %td{:class => "#{td_class}"}= patient['Sex']=="1"?"男":"女"
+            %td{:class => "#{td_class}"}= patient['CreateDate']
+            %td{:class => "#{td_class}"}= patient['UpdateDate']
+            %td{:class => "#{td_class}"}
               %a{:href=>"/modify?#{param}"}更新
-            %td
-            %td
+            %td{:class => "#{td_class}"}
               %a{:href=>"/delete?#{param}"}削除
-            %td

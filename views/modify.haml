@@ -1,0 +1,32 @@
+%html
+  %head
+    %meta{:charset => "UTF-8"}
+    %link{:rel  => "stylesheet", |
+          :type => "text/css", |
+          :href => "style.css"}
+  %body
+    %h2 患者登録情報更新
+    - if session['message']
+      %div{:class => "message"}
+        %p=session['message']
+        - session['message']=nil
+    %div
+      %a{:class=>"top_menu"}
+      %a{:href=>"/"}戻る
+      %a{:href=>"/logout"}ログアウト
+    %div
+      %form{:action=>"/modify",:method=>"post"}
+        %div
+          %p 患者番号
+          %input{:type=>"text",:name=>"id" ,:value=>"#{@patient['id']}"} 
+        %div
+          %p 氏名
+          %input{:type=>"text",:name=>"whole_name" ,:value=>"#{@patient['whole_name']}"}
+        %div
+          %p カナ氏名
+          %input{:type=>"text",:name=>"whole_name_kana", :value=>"#{@patient['whole_name_kana']}"}
+          %input{:type=>"text",:name=>"birth_date", :value=>"#{@patient['birth_date']}", :hidden=>"true"}
+        %input{:type  =>"text", :name  =>'sex', :value =>"#{@patient['sex']}", :hidden=>"true"}
+        %div
+          %input{:type=>"submit", :value=>"更新する"}
+

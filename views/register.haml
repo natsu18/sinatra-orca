@@ -6,15 +6,19 @@
 
 %html
   %head
+    %meta{:charset => "UTF-8"}
+    %link{:rel  => "stylesheet", |
+          :type => "text/css", |
+          :href => "style.css"}
   %body
     %h2 患者登録
-    %div
-      %a{:href=>"/"} 戻る
-      %a{:href=>"/logout"} ログアウト
-    %div
-      - if session['message']
+    - if session['message']
+      %div{:class => "message"}
         %p=session['message']
         - session['message']=nil
+    %div{:class => "top_menu"}
+      %a{:href=>"/"} 戻る
+      %a{:href=>"/logout"} ログアウト
     %div
       %form{:action=>"/register",:method=>"post"}
         %div
