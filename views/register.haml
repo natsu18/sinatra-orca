@@ -10,9 +10,11 @@
     %h2 患者登録
     %div
       %a{:href=>"/"} 戻る
+      %a{:href=>"/logout"} ログアウト
     %div
-      - if @error
-        %p=@error
+      - if session['message']
+        %p=session['message']
+        - session['message']=nil
     %div
       %form{:action=>"/register",:method=>"post"}
         %div

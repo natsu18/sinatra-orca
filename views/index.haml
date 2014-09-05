@@ -3,10 +3,12 @@
   %body
     %h2 日レセ患者API
     %div
-      - if @error
-        %p=@error
+      - if session['message']
+        %p=session['message']
+        - session['message']=nil
     %div
       %a{:href=>"/register"}新規登録
+      %a{:href=>"/logout"}ログアウト
     %div
       %table
         %tr
