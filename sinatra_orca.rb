@@ -10,6 +10,7 @@ require 'sinatra'
 require 'haml'
 require 'orca_api'
 
+use Rack::Protection
 enable :sessions
 
 set :bind,'0.0.0.0'
