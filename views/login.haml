@@ -1,0 +1,18 @@
+%html
+  %head
+  %body
+    %h2 ログイン
+    %div
+      - if session['message']
+        %p= session['message']
+        - session['message'] = nil
+    %div
+      %form{:action => "/login", :method => "post"}
+        %div
+          %p ユーザ
+          %input{:type => "text", :name => "user"}
+        %div
+          %p パスワード
+          %input{:type => "password", :name => "passwd"}
+        %div
+          %input{:type => "submit"}
